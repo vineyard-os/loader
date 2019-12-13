@@ -7,7 +7,7 @@
 
 static uintptr_t *pml4 = NULL;
 
-efi_status efi_virt_map(uintptr_t physical, uintptr_t virt, size_t pages, uintptr_t flags) {
+efi_status virt_map(uintptr_t physical, uintptr_t virt, size_t pages, uintptr_t flags) {
 	if(!pml4) {
 		pml4 = (uintptr_t *) (uintptr_t) efi_cr3_read();
 	}
@@ -53,14 +53,14 @@ efi_status efi_virt_map(uintptr_t physical, uintptr_t virt, size_t pages, uintpt
 		__asm volatile ("invlpg (%0)" : : "r" (virt + (i << 12)) : "memory");
 
 		if(pml1i + i > 511) {
-			efi_virt_map(physical + (i << 12), virt + (i << 12), pages - i, flags);
+			virt_map(physical + (i << 12), virt + (i << 12), pages - i, flags);
 		}
 	}
 
 	return EFI_SUCCESS;
 }
 
-void efi_virt_wp_disable(void) {
+void virt_wp_disable(void) {
 	uint64_t cr0 = efi_cr0_read();
 	cr0 &= ~(1UL << 16);
 	efi_cr0_write(cr0);

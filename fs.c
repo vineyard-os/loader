@@ -1,7 +1,7 @@
 #include <fs.h>
 #include <uefi.h>
 
-efi_status efi_fs_load_kernel(efi_file_protocol **kernel) {
+efi_status fs_load_kernel(efi_file_protocol **kernel) {
 	efi_status status;
 
 	efi_guid loaded_image_guid = EFI_LOADED_IMAGE_PROTOCOL_GUID;
@@ -27,7 +27,7 @@ efi_status efi_fs_load_kernel(efi_file_protocol **kernel) {
 	return EFI_SUCCESS;
 }
 
-efi_status efi_fs_read_header(efi_file_protocol *kernel, elf64_ehdr_t *header) {
+efi_status fs_read_header(efi_file_protocol *kernel, elf64_ehdr_t *header) {
 	efi_status status;
 
 	uint64_t size = sizeof(*header);
@@ -37,7 +37,7 @@ efi_status efi_fs_read_header(efi_file_protocol *kernel, elf64_ehdr_t *header) {
 	return EFI_SUCCESS;
 }
 
-efi_status efi_fs_read_phdrs(efi_file_protocol *kernel, elf64_ehdr_t header, elf64_phdr_t **phdrs) {
+efi_status fs_read_phdrs(efi_file_protocol *kernel, elf64_ehdr_t header, elf64_phdr_t **phdrs) {
 	efi_status status = kernel->SetPosition(kernel, header.e_phoff);
 	EFIERR(status);
 	uint64_t size = (size_t) header.e_phnum * header.e_phentsize;

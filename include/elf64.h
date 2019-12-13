@@ -20,12 +20,13 @@
 #define EI_PAD 9
 #define EI_NIDENT 16
 
+#define ELF_CLASS_32 1
+#define ELF_CLASS_64 2
 
-#define ELFCLASS32 1
-#define ELFCLASS64 2
+#define ELF_DATA_2LSB 1
+#define ELF_DATA_2MSB 2
 
-#define ELFDATA2LSB 1
-#define ELFDATA2MSB 2
+#define ELF_OSABI_SYSTEMV 0
 
 #define EM_X86_64 62
 
