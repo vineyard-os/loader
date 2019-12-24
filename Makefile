@@ -38,6 +38,8 @@ $(LOADER): $(LOADER_OBJ)
 	mkdir -p $(dir $@)
 	$(EFI_LD) $(EFI_LDFLAGS) $^
 	rm -f $(LOADER:.efi=.lib)
+
+install: $(LOADER)
 	mmd -i $(HDD).0 ::/efi -D s || true
 	mmd -i $(HDD).0 ::/efi/boot -D s || true
 	mcopy -i $(HDD).0 ../boot/efi/boot/bootx64.efi ::/efi/boot/bootx64.efi -D o
