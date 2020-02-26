@@ -1,4 +1,4 @@
-EFI_CFLAGS		?= -O2 -g
+EFI_CFLAGS		?= -g
 EFI_CFLAGS		:= $(EFI_CFLAGS) -pipe -Wall -Wbad-function-cast -Wconversion -Werror -Wextra -Wformat=2 -Wformat-security -Winit-self
 EFI_CFLAGS		:= $(EFI_CFLAGS) -Wparentheses -Winline -Wmissing-braces -Wmissing-declarations -Wmissing-field-initializers
 EFI_CFLAGS		:= $(EFI_CFLAGS) -Wmissing-prototypes -Wnested-externs -Wpointer-arith -Wredundant-decls -Wshadow -Wstrict-prototypes

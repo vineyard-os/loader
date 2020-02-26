@@ -116,7 +116,9 @@ efi_status efi_main(efi_handle image_handle, efi_system_table *systab) {
 	}
 
 	virt_map(stack, STACK, 33, PAGE_PRESENT | PAGE_WRITE | PAGE_NX);
-	elf_jump_to_kernel(handle, st, (uintptr_t) copy, header.e_entry);
+
+	/* we need the assembly stub because we are changing out the stack, so a simple __attribute__((sysv_abi)) won't do the trick here */
+	elf_jump_to_kernel(handle, st, (uintptr_t) copy, info->FileSize, header.e_entry);
 
 	for(;;);
 
