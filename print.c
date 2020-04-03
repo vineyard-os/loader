@@ -5,6 +5,14 @@
 
 #define PRINT(x) st->ConOut->OutputString(st->ConOut, (x))
 
+size_t efi_strlen(const char16_t *str) {
+	size_t ret = 0;
+
+	for(; *str; ret++, str++);
+
+	return ret;
+}
+
 efi_status efi_print(const char *str) {
 	return efi_printn(str, strlen(str));
 }

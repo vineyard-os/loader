@@ -3,6 +3,7 @@
 #include <efi.h>
 #include <elf64.h>
 
-efi_status fs_load_kernel(efi_file_protocol **kernel);
-efi_status fs_read_header(efi_file_protocol *kernel, elf64_ehdr_t *header);
-efi_status fs_read_phdrs(efi_file_protocol *kernel, elf64_ehdr_t header, elf64_phdr_t **phdrs);
+efi_status fs_open(efi_file_protocol **kernel, char16_t *path);
+void fs_read(efi_file_protocol *file, size_t len, size_t offset, void *buf);
+
+efi_file_info *fs_get_file_info(efi_file_protocol *file);

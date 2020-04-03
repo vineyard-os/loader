@@ -1,0 +1,18 @@
+#include <efi.h>
+
+efi_guid BlockIoProtocol = EFI_BLOCK_IO_PROTOCOL_GUID;
+efi_guid DevicePathProtocol = EFI_DEVICE_PATH_PROTOCOL_GUID;
+efi_guid DevicePathToTextProtocol = EFI_DEVICE_PATH_TO_TEXT_PROTOCOL_GUID;
+efi_guid DiskIoProtocol = EFI_DISK_IO_PROTOCOL_GUID;
+efi_guid DriverBindingProtocol = EFI_DRIVER_BINDING_PROTOCOL_GUID;
+efi_guid FileInfoGuid = EFI_FILE_INFO_GUID;
+efi_guid FileSystemInfoGuid = EFI_FILE_SYSTEM_INFO_GUID;
+efi_guid GraphicsOutputProtocol = EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID;
+efi_guid LoadedImageProtocol = EFI_LOADED_IMAGE_PROTOCOL_GUID;
+efi_guid ManagedNetworkProtocol = EFI_MANAGED_NETWORK_PROTOCOL_GUID;
+efi_guid PciRootBridgeIoProtocol = EFI_PCI_ROOT_BRIDGE_IO_PROTOCOL_GUID;
+efi_guid SimpleFileSystemProtocol = EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID;
+efi_guid SimpleNetworkProtocol = EFI_SIMPLE_NETWORK_PROTOCOL_GUID;
+efi_guid SimpleTextInputProtocol = EFI_SIMPLE_TEXT_INPUT_PROTOCOL_GUID;
+efi_guid SimpleTextOutputProtocol = EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL_GUID;
+efi_guid UsbIoProtocol = EFI_USB_IO_PROTOCOL_GUID;

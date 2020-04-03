@@ -1,8 +1,8 @@
-EFI_CFLAGS		?= -g
+EFI_CFLAGS		?= -gdwarf
 EFI_CFLAGS		:= $(EFI_CFLAGS) -pipe -Wall -Wbad-function-cast -Wconversion -Werror -Wextra -Wformat=2 -Wformat-security -Winit-self
 EFI_CFLAGS		:= $(EFI_CFLAGS) -Wparentheses -Winline -Wmissing-braces -Wmissing-declarations -Wmissing-field-initializers
 EFI_CFLAGS		:= $(EFI_CFLAGS) -Wmissing-prototypes -Wnested-externs -Wpointer-arith -Wredundant-decls -Wshadow -Wstrict-prototypes
-EFI_CFLAGS		:= $(EFI_CFLAGS) -Wswitch-default -Wswitch-enum -Wuninitialized -Wunreachable-code -Wunused -Wwrite-strings
+EFI_CFLAGS		:= $(EFI_CFLAGS) -Wswitch-default -Wswitch-enum -Wuninitialized -Wunreachable-code -Wunused -Wwrite-strings -Wno-unreachable-code
 EFI_CFLAGS		:= $(EFI_CFLAGS) -mno-red-zone -ffreestanding -fno-stack-protector -MMD -MP -std=gnu11 -mno-mmx -mno-sse -mno-sse2 -DVINEYARD
 EFI_CFLAGS		:= $(EFI_CFLAGS) -Iinclude -Wno-format -Wno-format-security -D STACK=0xFFFFFE0000000000 -D STACK_SIZE=0x21000 -D VINEYARD_LOADER
 EFI_ASFLAGS		:= -fwin64 -D STACK=0xFFFFFE0000000000 -D STACK_SIZE=0x21000
@@ -16,7 +16,7 @@ ifndef USE_GCC
 	EFI_CC		:= $(EFI_CLANG) -target x86_64-pc-win32-coff
 	EFI_LD		:= $(EFI_LLD-LINK)
 	EFI_CFLAGS	:= $(EFI_CFLAGS) -Wmissing-variable-declarations -Wused-but-marked-unused -flto
-	EFI_LDFLAGS	 = -subsystem:efi_application -nodefaultlib -dll -WX -entry:efi_main -out:$(LOADER)
+	EFI_LDFLAGS	 = -subsystem:efi_application -nodefaultlib -dll -WX -entry:efi_main -out:$(LOADER) /debug:dwarf
 else
 	EFI_CC		:= $(EFI_GCC)
 	EFI_LD		:= $(EFI_CC)
@@ -59,3 +59,5 @@ bin/obj/%.s.o: %.s
 
 clean:
 	rm -f $(LOADER) $(LOADER_OBJ)
+
+.SILENT:

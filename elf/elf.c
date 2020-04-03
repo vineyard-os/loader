@@ -1,6 +1,6 @@
 #include <elf.h>
+#include <loader.h>
 #include <uefi.h>
-#include <virt.h>
 
 uintptr_t efi_elf_phdr_flags(uintptr_t f) {
 	uintptr_t flags = PAGE_PRESENT;

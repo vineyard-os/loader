@@ -71,7 +71,7 @@ typedef struct {
 	elf64_half_t e_shentsize;
 	elf64_half_t e_shnum;
 	elf64_half_t e_shstrndx;
-} __attribute__((__packed__)) elf64_ehdr_t;
+} __attribute__((packed)) elf64_ehdr_t;
 
 typedef struct {
 	elf64_word_t sh_name;
@@ -84,7 +84,7 @@ typedef struct {
 	elf64_word_t sh_info;
 	elf64_xword_t sh_addralign;
 	elf64_xword_t sh_entsize;
-} __attribute__((__packed__)) elf64_shdr_t;
+} __attribute__((packed)) elf64_shdr_t;
 
 typedef struct {
 	elf64_word_t p_type;
@@ -95,4 +95,4 @@ typedef struct {
 	elf64_xword_t p_filesz;
 	elf64_xword_t p_memsz;
 	elf64_xword_t p_align;
-} __attribute__((__packed__)) elf64_phdr_t;
+} __attribute__((packed)) elf64_phdr_t;
