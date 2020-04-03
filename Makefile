@@ -40,6 +40,7 @@ $(LOADER): $(LOADER_OBJ)
 	rm -f $(LOADER:.efi=.lib)
 
 install: $(LOADER)
+	mcopy -i $(HDD).0 ../third-party/efifs/btrfs.efi ::/btrfs.efi -D o
 	mmd -i $(HDD).0 ::/efi -D s || true
 	mmd -i $(HDD).0 ::/efi/boot -D s || true
 	mcopy -i $(HDD).0 ../boot/efi/boot/bootx64.efi ::/efi/boot/bootx64.efi -D o

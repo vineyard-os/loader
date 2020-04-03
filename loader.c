@@ -10,6 +10,8 @@ efi_status efi_main(efi_handle image_handle, efi_system_table *systab) {
 
 	uefi_init();
 
+	uefi_driver_start(image_handle, (char16_t *) L"btrfs.efi");
+	uefi_io_reconnect();
 
 
 	loader_kernel();

@@ -2,7 +2,10 @@
 
 #include <efi.h>
 
+#include <uefi/device-path.h>
+#include <uefi/driver.h>
 #include <uefi/init.h>
+#include <uefi/io.h>
 #include <uefi/util.h>
 
 #define EFIERR(x) if(EFI_ERROR((x))) { efi_printf((char *) "EFIERR %s @ %s:%d\n", efi_get_error(x), __FILE__, __LINE__); uefi_key_wait(); st->BootServices->Exit(handle, 1, 0, NULL); }

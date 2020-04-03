@@ -43,8 +43,6 @@ void loader_paging_map(uint64_t *pml4, uintptr_t physical, uintptr_t virtual, ui
 	if(!(pml4[i.pml4i] & PAGE_PRESENT)) {
 		i.pml3 = uefi_alloc_pages(1);
 		pml4[i.pml4i] = (uintptr_t) i.pml3 | PAGE_PRESENT | PAGE_WRITE;
-
-		memset(i.pml3, 0, 0x1000);
 	} else {
 		i.pml3 = (void *) (pml4[i.pml4i] & 0x000FFFFFFFFFF000UL);
 	}
@@ -52,8 +50,6 @@ void loader_paging_map(uint64_t *pml4, uintptr_t physical, uintptr_t virtual, ui
 	if(!(i.pml3[i.pml3i] & PAGE_PRESENT)) {
 		i.pml2 = uefi_alloc_pages(1);
 		i.pml3[i.pml3i] = (uintptr_t) i.pml2 | PAGE_PRESENT | PAGE_WRITE;
-
-		memset(i.pml2, 0, 0x1000);
 	} else {
 		i.pml2 = (void *) (i.pml3[i.pml3i] & 0x000FFFFFFFFFF000UL);
 	}
@@ -61,8 +57,6 @@ void loader_paging_map(uint64_t *pml4, uintptr_t physical, uintptr_t virtual, ui
 	if(!(i.pml2[i.pml2i] & PAGE_PRESENT)) {
 		i.pml1 = uefi_alloc_pages(1);
 		i.pml2[i.pml2i] = (uintptr_t) i.pml1 | PAGE_PRESENT | PAGE_WRITE;
-
-		memset(i.pml1, 0, 0x1000);
 	} else {
 		i.pml1 = (void *) (i.pml2[i.pml2i] & 0x000FFFFFFFFFF000UL);
 	}
