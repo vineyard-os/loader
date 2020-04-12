@@ -1,12 +1,10 @@
 #include <efi.h>
 #include <uefi.h>
 
-struct efi_errors {
+struct uefi_errors {
 	efi_status status;
 	const char *text;
-};
-
-static const struct efi_errors efi_errors[] = {
+} static const uefi_errors[] = {
 	{EFI_LOAD_ERROR, "LOAD_ERROR"},
 	{EFI_INVALID_PARAMETER, "INVALID_PARAMETER"},
 	{EFI_UNSUPPORTED, "UNSUPPORTED"},
@@ -43,10 +41,10 @@ static const struct efi_errors efi_errors[] = {
 	{0, 0},
 };
 
-const char *efi_get_error(efi_status status) {
-	for(size_t i = 0; efi_errors[i].status; i++) {
-		if(efi_errors[i].status == status) {
-			return efi_errors[i].text;
+const char *uefi_strerror(efi_status status) {
+	for(size_t i = 0; uefi_errors[i].status; i++) {
+		if(uefi_errors[i].status == status) {
+			return uefi_errors[i].text;
 		}
 	}
 

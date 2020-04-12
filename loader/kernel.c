@@ -89,7 +89,7 @@ void loader_kernel_phdrs(efi_file_protocol *kernel, elf64_ehdr_t *header, uint64
 			efi_status status = st->BootServices->AllocatePages(AllocateAnyPages, EfiLoaderData, pages, &physical);
 
 			if(EFI_ERROR(status)) {
-				efi_print(efi_get_error(status));
+				efi_print(uefi_strerror(status));
 				efi_panic(L" error mapping kernel", status);
 			}
 

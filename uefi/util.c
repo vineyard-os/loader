@@ -55,3 +55,19 @@ int uefi_guid_compare(efi_guid *a, efi_guid *b) {
 
 	return 1;
 }
+
+char uefi_read_keystroke(void) {
+	uintptr_t index;
+	efi_input_key key = { };
+	efi_status s;
+
+	while(!key.UnicodeChar) {
+		s = st->BootServices->WaitForEvent(1, &st->ConIn->WaitForKey, &index);
+		EFIERR(s);
+
+		s = st->ConIn->ReadKeyStroke(st->ConIn, &key);
+		EFIERR(s);
+	}
+
+	return (char) (key.UnicodeChar & 0xFFU);
+}
