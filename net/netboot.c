@@ -36,7 +36,7 @@ efi_status netboot_cmd_receive(void *data) {
 			vy_netboot_file_fragment_t *fragment = (void *) &msg->data;
 
 			if(s->file_info->data_per_packet < fragment->data_len) {
-				efi_printf("unexpected fragment (%u) data length: %u instead of %u\n", fragment->fragment_id, fragment->data_len, s->file_info->data_per_packet);
+				efi_printf("unexpected fragment (%zu) data length: %zu instead of %zu\n", fragment->fragment_id, fragment->data_len, s->file_info->data_per_packet);
 			}
 
 			vy_netboot_ack_t ack = { .type = CMD_FILE_FRAGMENT, .file_fragment = 0 };

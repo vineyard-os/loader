@@ -62,14 +62,14 @@ efi_device_path_protocol *uefi_devpath_from_file_handle(efi_handle h) {
 	efi_status status = st->BootServices->OpenProtocol(h, &LoadedImageProtocol, (void **) &protocol, h, NULL, EFI_OPEN_PROTOCOL_BY_HANDLE_PROTOCOL);
 
 	if(EFI_ERROR(status)) {
-		efi_printf("uefi_devpath_from_file_handle: open LoadedImageProtocol status %u\n", status);
+		efi_printf("uefi_devpath_from_file_handle: open LoadedImageProtocol status %zu\n", status);
 		for(;;);
 	}
 
 	status = st->BootServices->OpenProtocol(protocol->DeviceHandle, &DevicePathProtocol, (void **) &devpath, h, NULL, EFI_OPEN_PROTOCOL_BY_HANDLE_PROTOCOL);
 
 	if(EFI_ERROR(status)) {
-		efi_printf("uefi_devpath_from_file_handle: open DevicePathProtocol status %u\n", status);
+		efi_printf("uefi_devpath_from_file_handle: open DevicePathProtocol status %zu\n", status);
 		for(;;);
 	}
 

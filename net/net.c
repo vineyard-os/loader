@@ -73,13 +73,13 @@ static efi_status net_get_protocol(void) {
 
 		status = st->BootServices->HandleProtocol(handles[i], &SimpleNetworkProtocol, (void **) &snp_current);
 		if(EFI_ERROR(status)) {
-			efi_printf(": failed to open (%u)\n", status);
+			efi_printf(": failed to open (%zu)\n", status);
 			goto fail;
 		}
 
 		status = snp_current->Start(snp_current);
 		if(EFI_ERROR(status) && status != EFI_ALREADY_STARTED) {
-			efi_printf(": failed to start (%u)\n", status);
+			efi_printf(": failed to start (%zu)\n", status);
 			goto fail;
 		}
 
@@ -87,14 +87,14 @@ static efi_status net_get_protocol(void) {
 			status = snp_current->Initialize(snp_current, 0, 0);
 
 			if(EFI_ERROR(status)) {
-				efi_printf(": failed to initialize (%u)\n", status);
+				efi_printf(": failed to initialize (%zu)\n", status);
 				goto fail;
 			}
 		}
 
 		status = snp_current->GetStatus(snp_current, &interrupt_status, &tx_buf);
 		if(EFI_ERROR(status)) {
-			efi_printf(": failed to read status (%u)\n", status);
+			efi_printf(": failed to read status (%zu)\n", status);
 			goto fail;
 		}
 
@@ -171,7 +171,7 @@ static void net_poll(void) {
 
 	if(eth_bufpool_avail < 16) {
 		if((status = snp->GetStatus(snp, &interrupt_status, &tx_buf))) {
-			efi_printf("GetStatus returned %u\n", status);
+			efi_printf("GetStatus returned %zu\n", status);
 			return;
 		}
 
